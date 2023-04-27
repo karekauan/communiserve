@@ -1,0 +1,43 @@
+{
+	"compilerOptions": {
+		"target": "es6",
+		"experimentalDecorators": true,
+		"emitDecoratorMetadata": true,
+		"useDefineForClassFields": true,
+		"moduleDetection": "auto",
+		"module": "es6",
+		"rootDir": "./",
+		"moduleResolution": "node",
+		"baseUrl": "./",
+		"paths": {
+			"@/*": ["src/*"],
+			"@tests/*": ["tests/*"]
+		},
+		"typeRoots": ["@types", "node_modules/@types"],
+		"resolveJsonModule": true,
+		"strict": true,
+		"noImplicitAny": true,
+		"strictNullChecks": true,
+		"strictFunctionTypes": true,
+		"strictBindCallApply": true,
+		"strictPropertyInitialization": true,
+		"noImplicitThis": true,
+		"useUnknownInCatchVariables": true,
+		"alwaysStrict": true,
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
+		"exactOptionalPropertyTypes": true,
+		"noImplicitReturns": true,
+		"noFallthroughCasesInSwitch": true,
+		"noUncheckedIndexedAccess": true,
+		"noImplicitOverride": true,
+		"noPropertyAccessFromIndexSignature": true,
+		"allowUnusedLabels": true,
+		"allowUnreachableCode": true,
+		"allowSyntheticDefaultImports": true,
+		"allowJs": true,
+		"esModuleInterop": true,
+		"sourceMap": true
+	},
+	"include": ["src/**/*.ts", "src/**/*.js", "tests/**/*.ts", "tests/**/*.js"]
+}
