@@ -1,0 +1,66 @@
+erDiagram
+  User {
+    id INT
+    userAccountId INT
+  }
+
+  UserAccount {
+    id INT
+    username STRING
+    password STRING
+    email STRING
+    salt STRING
+    userId INT
+  }
+
+  Role {
+    id INT
+    name STRING
+    description STRING
+  }
+
+  Resource {
+    id INT
+    name STRING
+    description STRING
+    resourceId INT
+  }
+
+  AccessControl {
+    id INT
+    userId INT 
+    roleId INT
+    resourceId INT
+    hasReadAccess BOOL
+    hasWriteAccess BOOL
+    hasExecuteAccess BOOL
+  }
+
+  SingleSignOn {
+    id INT
+    userAccountId INT
+    provider STRING
+    providerAccountId STRING
+  }
+
+  Session {
+    id INT
+    userAccountId INT
+    token STRING
+    expirationTime DATETIME
+  }
+
+  ResourceFile {
+    id INT
+    resourceId INT
+    filename STRING
+    storageLocation STRING
+  }
+
+  UserAccount ||--|| User : ""
+  User ||..o{ AccessControl : ""
+  Role ||..o{ AccessControl : ""
+  Resource ||--o{ AccessControl : ""
+  UserAccount ||--o{ SingleSignOn : ""
+  UserAccount ||--o{ Session : ""
+  Resource ||--o{ ResourceFile : ""
