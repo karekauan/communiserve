@@ -1,17 +1,11 @@
 ```mermaid
 erDiagram
-  User {
-    id INT
-    userAccountId INT
-  }
-
   UserAccount {
     id INT
     username STRING
     password STRING
     email STRING
     salt STRING
-    userId INT
   }
 
   Role {
@@ -24,12 +18,12 @@ erDiagram
     id INT
     name STRING
     description STRING
-    resourceId INT
+    url STRING
   }
 
   AccessControl {
     id INT
-    userId INT 
+    userAccountId INT 
     roleId INT
     resourceId INT
     hasReadAccess BOOL
@@ -51,18 +45,9 @@ erDiagram
     expirationTime DATETIME
   }
 
-  ResourceFile {
-    id INT
-    resourceId INT
-    filename STRING
-    storageLocation STRING
-  }
-
-  UserAccount ||--|| User : ""
-  User ||..o{ AccessControl : ""
+  UserAccount ||..o{ AccessControl : ""
   Role ||..o{ AccessControl : ""
   Resource ||--o{ AccessControl : ""
   UserAccount ||--o{ SingleSignOn : ""
   UserAccount ||--o{ Session : ""
-  Resource ||--o{ ResourceFile : ""
 ```
