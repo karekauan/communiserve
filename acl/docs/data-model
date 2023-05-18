@@ -1,3 +1,4 @@
+```mermaid
 erDiagram
   User {
     id INT
@@ -64,3 +65,4 @@ erDiagram
   UserAccount ||--o{ SingleSignOn : ""
   UserAccount ||--o{ Session : ""
   Resource ||--o{ ResourceFile : ""
+```
