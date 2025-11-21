@@ -59,3 +59,79 @@ Started GET "/icon.png" for 127.0.0.1 at 2025-11-21 10:56:35 -0300
   
 ActionController::RoutingError (No route matches [GET] "/icon.png"):
   
+Started POST "/auth/check_cpf" for 192.168.1.12 at 2025-11-21 11:22:01 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Api'*/[0m
+Processing by AuthController#check_cpf as HTML
+  Parameters: {"cpf"=>"11056887982", "auth"=>{"cpf"=>"11056887982"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."cpf" = '11056887982' LIMIT 1 /*action='check_cpf',application='Api',controller='auth'*/[0m
+  ↳ app/controllers/auth_controller.rb:4:in `check_cpf'
+Completed 200 OK in 34ms (Views: 0.1ms | ActiveRecord: 3.3ms (1 query, 0 cached) | GC: 9.7ms)
+
+
+Started POST "/auth/login" for 192.168.1.12 at 2025-11-21 11:22:19 -0300
+Processing by AuthController#login as HTML
+  Parameters: {"cpf"=>"11056887982", "password"=>"[FILTERED]", "auth"=>{"cpf"=>"11056887982", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."cpf" = '11056887982' LIMIT 1 /*action='login',application='Api',controller='auth'*/[0m
+  ↳ app/controllers/auth_controller.rb:15:in `login'
+Completed 401 Unauthorized in 172ms (Views: 0.1ms | ActiveRecord: 0.4ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/auth/login" for 192.168.1.12 at 2025-11-21 11:22:36 -0300
+Processing by AuthController#login as HTML
+  Parameters: {"cpf"=>"11056887982", "password"=>"[FILTERED]", "auth"=>{"cpf"=>"11056887982", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."cpf" = '11056887982' LIMIT 1 /*action='login',application='Api',controller='auth'*/[0m
+  ↳ app/controllers/auth_controller.rb:15:in `login'
+Completed 401 Unauthorized in 172ms (Views: 0.1ms | ActiveRecord: 0.4ms (1 query, 0 cached) | GC: 0.3ms)
+
+
+Started POST "/auth/login" for 192.168.1.12 at 2025-11-21 11:23:46 -0300
+Processing by AuthController#login as HTML
+  Parameters: {"cpf"=>"11056887982", "password"=>"[FILTERED]", "auth"=>{"cpf"=>"11056887982", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."cpf" = '11056887982' LIMIT 1 /*action='login',application='Api',controller='auth'*/[0m
+  ↳ app/controllers/auth_controller.rb:15:in `login'
+Completed 200 OK in 173ms (Views: 0.1ms | ActiveRecord: 0.3ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/auth/check_cpf" for 192.168.1.12 at 2025-11-21 11:24:00 -0300
+Processing by AuthController#check_cpf as HTML
+  Parameters: {"cpf"=>"11111111111", "auth"=>{"cpf"=>"11111111111"}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."cpf" = '11111111111' LIMIT 1 /*action='check_cpf',application='Api',controller='auth'*/[0m
+  ↳ app/controllers/auth_controller.rb:4:in `check_cpf'
+Completed 200 OK in 1ms (Views: 0.1ms | ActiveRecord: 0.4ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/auth/register" for 192.168.1.12 at 2025-11-21 11:26:34 -0300
+Processing by AuthController#register as HTML
+  Parameters: {"user"=>{"cpf"=>"11111111111", "name"=>"Pedro", "birthday"=>"2004-03-29", "email"=>"[FILTERED]", "phone"=>"45991254679", "password"=>"[FILTERED]", "address_attributes"=>{"street"=>"Tchuruabengo", "number"=>"12", "neighborhood"=>"Teste", "city"=>"123", "state"=>"123", "zipcode"=>"85801120"}}, "password"=>"[FILTERED]", "auth"=>{"user"=>{"cpf"=>"11111111111", "name"=>"Pedro", "birthday"=>"2004-03-29", "email"=>"[FILTERED]", "phone"=>"45991254679", "password"=>"[FILTERED]", "address_attributes"=>{"street"=>"Tchuruabengo", "number"=>"12", "neighborhood"=>"Teste", "city"=>"123", "state"=>"123", "zipcode"=>"85801120"}}, "password"=>"[FILTERED]"}}
+[31mUnpermitted parameter: :password. Context: { controller: AuthController, action: register, request: #<ActionDispatch::Request:0x0000745c3601d5e0>, params: {"user"=>{"cpf"=>"11111111111", "name"=>"Pedro", "birthday"=>"2004-03-29", "email"=>"[FILTERED]", "phone"=>"45991254679", "password"=>"[FILTERED]", "address_attributes"=>{"street"=>"Tchuruabengo", "number"=>"12", "neighborhood"=>"Teste", "city"=>"123", "state"=>"123", "zipcode"=>"85801120"}}, "password"=>"[FILTERED]", "controller"=>"auth", "action"=>"register", "auth"=>{"user"=>{"cpf"=>"11111111111", "name"=>"Pedro", "birthday"=>"2004-03-29", "email"=>"[FILTERED]", "phone"=>"45991254679", "password"=>"[FILTERED]", "address_attributes"=>{"street"=>"Tchuruabengo", "number"=>"12", "neighborhood"=>"Teste", "city"=>"123", "state"=>"123", "zipcode"=>"85801120"}}, "password"=>"[FILTERED]"}} }[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN /*action='register',application='Api',controller='auth'*/[0m
+  ↳ app/controllers/auth_controller.rb:39:in `register'
+  [1m[36mUser Exists? (1.4ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'a@a.com' LIMIT 1 /*action='register',application='Api',controller='auth'*/[0m
+  ↳ app/controllers/auth_controller.rb:39:in `register'
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."cpf" = '11111111111' LIMIT 1 /*action='register',application='Api',controller='auth'*/[0m
+  ↳ app/controllers/auth_controller.rb:39:in `register'
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "birthday", "email", "phone", "cpf", "password_digest", "role", "created_at", "updated_at") VALUES ('Pedro', '2004-03-29', 'a@a.com', '45991254679', '11111111111', '$2a$12$nT2j/ReLpXzftuUpLXw1nulIF/mT9oyTJ/NySuGtK./Gk87OlqJne', 'citizen', '2025-11-21 14:26:34.305505', '2025-11-21 14:26:34.305505') RETURNING "id" /*action='register',application='Api',controller='auth'*/[0m
+  ↳ app/controllers/auth_controller.rb:39:in `register'
+  [1m[36mAddress Create (0.3ms)[0m  [1m[32mINSERT INTO "addresses" ("user_id", "street", "number", "neighborhood", "city", "state", "zipcode", "created_at", "updated_at") VALUES (2, 'Tchuruabengo', '12', 'Teste', '123', '123', '85801120', '2025-11-21 14:26:34.306949', '2025-11-21 14:26:34.306949') RETURNING "id" /*action='register',application='Api',controller='auth'*/[0m
+  ↳ app/controllers/auth_controller.rb:39:in `register'
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mCOMMIT /*action='register',application='Api',controller='auth'*/[0m
+  ↳ app/controllers/auth_controller.rb:39:in `register'
+Completed 201 Created in 187ms (Views: 0.1ms | ActiveRecord: 4.0ms (4 queries, 0 cached) | GC: 1.3ms)
+
+
+Started POST "/auth/check_cpf" for 192.168.1.12 at 2025-11-21 11:26:44 -0300
+Processing by AuthController#check_cpf as HTML
+  Parameters: {"cpf"=>"11111111111", "auth"=>{"cpf"=>"11111111111"}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."cpf" = '11111111111' LIMIT 1 /*action='check_cpf',application='Api',controller='auth'*/[0m
+  ↳ app/controllers/auth_controller.rb:4:in `check_cpf'
+Completed 200 OK in 3ms (Views: 0.1ms | ActiveRecord: 0.4ms (1 query, 0 cached) | GC: 1.5ms)
+
+
+Started POST "/auth/login" for 192.168.1.12 at 2025-11-21 11:26:48 -0300
+Processing by AuthController#login as HTML
+  Parameters: {"cpf"=>"11111111111", "password"=>"[FILTERED]", "auth"=>{"cpf"=>"11111111111", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."cpf" = '11111111111' LIMIT 1 /*action='login',application='Api',controller='auth'*/[0m
+  ↳ app/controllers/auth_controller.rb:15:in `login'
+Completed 200 OK in 196ms (Views: 0.1ms | ActiveRecord: 0.4ms (1 query, 0 cached) | GC: 25.1ms)
+
+
