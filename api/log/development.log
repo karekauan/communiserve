@@ -492,3 +492,117 @@ Processing by UsersController#skills as HTML
 Completed 200 OK in 1ms (Views: 0.1ms | ActiveRecord: 0.3ms (1 query, 0 cached) | GC: 0.1ms)
 
 
+Started GET "/users" for 192.168.1.12 at 2025-11-21 16:51:08 -0300
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."role" IN ('citizen', 'worker') ORDER BY "users"."name" ASC /*action='index',application='Api',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:10:in `map'
+  [1m[36mAddress Load (0.2ms)[0m  [1m[34mSELECT "addresses".* FROM "addresses" WHERE "addresses"."user_id" IN (2, 3) /*action='index',application='Api',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:10:in `map'
+  [1m[36mUserSkill Load (0.2ms)[0m  [1m[34mSELECT "user_skills".* FROM "user_skills" WHERE "user_skills"."user_id" IN (2, 3) /*action='index',application='Api',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:10:in `map'
+  [1m[36mSkill Load (0.1ms)[0m  [1m[34mSELECT "skills".* FROM "skills" WHERE "skills"."id" IN (3, 2) /*action='index',application='Api',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:10:in `map'
+Completed 200 OK in 15ms (Views: 0.1ms | ActiveRecord: 2.6ms (4 queries, 0 cached) | GC: 0.5ms)
+
+
+Started GET "/auth/profile?cpf=11056887982" for 192.168.1.12 at 2025-11-21 17:12:07 -0300
+Processing by AuthController#profile as HTML
+  Parameters: {"cpf"=>"11056887982"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."cpf" = '11056887982' LIMIT 1 /*action='profile',application='Api',controller='auth'*/[0m
+  ↳ app/controllers/auth_controller.rb:57:in `profile'
+  [1m[36mAddress Load (0.2ms)[0m  [1m[34mSELECT "addresses".* FROM "addresses" WHERE "addresses"."user_id" = 1 LIMIT 1 /*action='profile',application='Api',controller='auth'*/[0m
+  ↳ app/controllers/auth_controller.rb:68:in `profile'
+  [1m[36mSkill Load (0.4ms)[0m  [1m[34mSELECT "skills".* FROM "skills" INNER JOIN "user_skills" ON "skills"."id" = "user_skills"."skill_id" WHERE "user_skills"."user_id" = 1 /*action='profile',application='Api',controller='auth'*/[0m
+  ↳ app/controllers/auth_controller.rb:76:in `map'
+Completed 200 OK in 22ms (Views: 0.1ms | ActiveRecord: 3.0ms (3 queries, 0 cached) | GC: 0.2ms)
+
+
+Started GET "/users" for 192.168.1.12 at 2025-11-21 17:12:25 -0300
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."role" IN ('citizen', 'worker') ORDER BY "users"."name" ASC /*action='index',application='Api',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:10:in `map'
+  [1m[36mAddress Load (0.1ms)[0m  [1m[34mSELECT "addresses".* FROM "addresses" WHERE "addresses"."user_id" IN (2, 3) /*action='index',application='Api',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:10:in `map'
+  [1m[36mUserSkill Load (0.1ms)[0m  [1m[34mSELECT "user_skills".* FROM "user_skills" WHERE "user_skills"."user_id" IN (2, 3) /*action='index',application='Api',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:10:in `map'
+  [1m[36mSkill Load (0.2ms)[0m  [1m[34mSELECT "skills".* FROM "skills" WHERE "skills"."id" IN (3, 2) /*action='index',application='Api',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:10:in `map'
+Completed 200 OK in 8ms (Views: 0.1ms | ActiveRecord: 1.1ms (4 queries, 0 cached) | GC: 3.0ms)
+
+
+Started POST "/auth/check_cpf" for 192.168.1.12 at 2025-11-21 17:12:36 -0300
+Processing by AuthController#check_cpf as HTML
+  Parameters: {"cpf"=>"11111111111", "auth"=>{"cpf"=>"11111111111"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."cpf" = '11111111111' LIMIT 1 /*action='check_cpf',application='Api',controller='auth'*/[0m
+  ↳ app/controllers/auth_controller.rb:4:in `check_cpf'
+Completed 200 OK in 1ms (Views: 0.1ms | ActiveRecord: 0.3ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/auth/login" for 192.168.1.12 at 2025-11-21 17:12:40 -0300
+Processing by AuthController#login as HTML
+  Parameters: {"cpf"=>"11111111111", "password"=>"[FILTERED]", "auth"=>{"cpf"=>"11111111111", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."cpf" = '11111111111' LIMIT 1 /*action='login',application='Api',controller='auth'*/[0m
+  ↳ app/controllers/auth_controller.rb:15:in `login'
+Completed 200 OK in 172ms (Views: 0.1ms | ActiveRecord: 0.4ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/auth/profile?cpf=11111111111" for 192.168.1.12 at 2025-11-21 17:12:42 -0300
+Processing by AuthController#profile as HTML
+  Parameters: {"cpf"=>"11111111111"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."cpf" = '11111111111' LIMIT 1 /*action='profile',application='Api',controller='auth'*/[0m
+  ↳ app/controllers/auth_controller.rb:57:in `profile'
+  [1m[36mAddress Load (0.1ms)[0m  [1m[34mSELECT "addresses".* FROM "addresses" WHERE "addresses"."user_id" = 2 LIMIT 1 /*action='profile',application='Api',controller='auth'*/[0m
+  ↳ app/controllers/auth_controller.rb:68:in `profile'
+  [1m[36mSkill Load (0.2ms)[0m  [1m[34mSELECT "skills".* FROM "skills" INNER JOIN "user_skills" ON "skills"."id" = "user_skills"."skill_id" WHERE "user_skills"."user_id" = 2 /*action='profile',application='Api',controller='auth'*/[0m
+  ↳ app/controllers/auth_controller.rb:76:in `map'
+Completed 200 OK in 2ms (Views: 0.1ms | ActiveRecord: 0.6ms (3 queries, 0 cached) | GC: 0.0ms)
+
+
+Started PUT "/auth/profile" for 192.168.1.12 at 2025-11-21 17:12:52 -0300
+Processing by AuthController#update_profile as HTML
+  Parameters: {"cpf"=>"11111111111", "user"=>{"name"=>"Pedro", "email"=>"[FILTERED]", "phone"=>"45991254679", "birthday"=>"2004-03-28", "address_attributes"=>{"street"=>"Tchuruabengo", "number"=>"12", "neighborhood"=>"Teste", "city"=>"123", "state"=>"123", "zipcode"=>"85801121"}}, "auth"=>{"cpf"=>"11111111111", "user"=>{"name"=>"Pedro", "email"=>"[FILTERED]", "phone"=>"45991254679", "birthday"=>"2004-03-28", "address_attributes"=>{"street"=>"Tchuruabengo", "number"=>"12", "neighborhood"=>"Teste", "city"=>"123", "state"=>"123", "zipcode"=>"85801121"}}}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."cpf" = '11111111111' LIMIT 1 /*action='update_profile',application='Api',controller='auth'*/[0m
+  ↳ app/controllers/auth_controller.rb:85:in `update_profile'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN /*action='update_profile',application='Api',controller='auth'*/[0m
+  ↳ app/controllers/auth_controller.rb:98:in `update_profile'
+  [1m[36mAddress Load (0.5ms)[0m  [1m[34mSELECT "addresses".* FROM "addresses" WHERE "addresses"."user_id" = 2 LIMIT 1 /*action='update_profile',application='Api',controller='auth'*/[0m
+  ↳ app/controllers/auth_controller.rb:98:in `update_profile'
+  [1m[36mAddress Destroy (0.1ms)[0m  [1m[31mDELETE FROM "addresses" WHERE "addresses"."id" = 2 /*action='update_profile',application='Api',controller='auth'*/[0m
+  ↳ app/controllers/auth_controller.rb:98:in `update_profile'
+  [1m[36mUser Update (0.2ms)[0m  [1m[33mUPDATE "users" SET "birthday" = '2004-03-28', "updated_at" = '2025-11-21 20:12:52.030961' WHERE "users"."id" = 2 /*action='update_profile',application='Api',controller='auth'*/[0m
+  ↳ app/controllers/auth_controller.rb:98:in `update_profile'
+  [1m[36mAddress Create (0.2ms)[0m  [1m[32mINSERT INTO "addresses" ("user_id", "street", "number", "neighborhood", "city", "state", "zipcode", "created_at", "updated_at") VALUES (2, 'Tchuruabengo', '12', 'Teste', '123', '123', '85801121', '2025-11-21 20:12:52.032106', '2025-11-21 20:12:52.032106') RETURNING "id" /*action='update_profile',application='Api',controller='auth'*/[0m
+  ↳ app/controllers/auth_controller.rb:98:in `update_profile'
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mCOMMIT /*action='update_profile',application='Api',controller='auth'*/[0m
+  ↳ app/controllers/auth_controller.rb:98:in `update_profile'
+Completed 200 OK in 9ms (Views: 0.1ms | ActiveRecord: 3.6ms (5 queries, 0 cached) | GC: 0.3ms)
+
+
+Started POST "/auth/check_cpf" for 192.168.1.12 at 2025-11-21 17:13:00 -0300
+Processing by AuthController#check_cpf as HTML
+  Parameters: {"cpf"=>"12345678900", "auth"=>{"cpf"=>"12345678900"}}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."cpf" = '12345678900' LIMIT 1 /*action='check_cpf',application='Api',controller='auth'*/[0m
+  ↳ app/controllers/auth_controller.rb:4:in `check_cpf'
+Completed 200 OK in 1ms (Views: 0.1ms | ActiveRecord: 0.5ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/auth/login" for 192.168.1.12 at 2025-11-21 17:13:04 -0300
+Processing by AuthController#login as HTML
+  Parameters: {"cpf"=>"12345678900", "password"=>"[FILTERED]", "auth"=>{"cpf"=>"12345678900", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."cpf" = '12345678900' LIMIT 1 /*action='login',application='Api',controller='auth'*/[0m
+  ↳ app/controllers/auth_controller.rb:15:in `login'
+Completed 200 OK in 172ms (Views: 0.1ms | ActiveRecord: 0.4ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/auth/profile?cpf=12345678900" for 192.168.1.12 at 2025-11-21 17:13:06 -0300
+Processing by AuthController#profile as HTML
+  Parameters: {"cpf"=>"12345678900"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."cpf" = '12345678900' LIMIT 1 /*action='profile',application='Api',controller='auth'*/[0m
+  ↳ app/controllers/auth_controller.rb:57:in `profile'
+  [1m[36mAddress Load (0.1ms)[0m  [1m[34mSELECT "addresses".* FROM "addresses" WHERE "addresses"."user_id" = 3 LIMIT 1 /*action='profile',application='Api',controller='auth'*/[0m
+  ↳ app/controllers/auth_controller.rb:68:in `profile'
+  [1m[36mSkill Load (0.2ms)[0m  [1m[34mSELECT "skills".* FROM "skills" INNER JOIN "user_skills" ON "skills"."id" = "user_skills"."skill_id" WHERE "user_skills"."user_id" = 3 /*action='profile',application='Api',controller='auth'*/[0m
+  ↳ app/controllers/auth_controller.rb:76:in `map'
+Completed 200 OK in 3ms (Views: 0.1ms | ActiveRecord: 0.8ms (3 queries, 0 cached) | GC: 0.0ms)
+
+

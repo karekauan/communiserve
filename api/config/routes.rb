@@ -9,6 +9,9 @@ Rails.application.routes.draw do
   post "auth/check_cpf", to: "auth#check_cpf"
   post "auth/login", to: "auth#login"
   post "auth/register", to: "auth#register"
+  get "auth/profile", to: "auth#profile"
+  put "auth/profile", to: "auth#update_profile"
+  patch "auth/profile", to: "auth#update_profile"
   
   # Users management routes (admin only)
   get "users", to: "users#index"
