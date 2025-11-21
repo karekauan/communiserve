@@ -28,3 +28,10 @@ if admin.new_record?
 else
   puts "Admin user already exists."
 end
+
+# Create default skills
+skills = ['Pintura', 'Elétrica', 'Jardinagem']
+skills.each do |skill_name|
+  skill = Skill.find_or_create_by(name: skill_name)
+  puts "Skill '#{skill_name}' #{skill.persisted? ? 'already exists' : 'created'}"
+end

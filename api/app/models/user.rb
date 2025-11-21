@@ -2,6 +2,8 @@ class User < ApplicationRecord
   has_secure_password
   
   has_one :address, dependent: :destroy
+  has_many :user_skills, dependent: :destroy
+  has_many :skills, through: :user_skills
   
   validates :name, presence: true
   validates :birthday, presence: true

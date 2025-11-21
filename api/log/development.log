@@ -135,3 +135,360 @@ Processing by AuthController#login as HTML
 Completed 200 OK in 196ms (Views: 0.1ms | ActiveRecord: 0.4ms (1 query, 0 cached) | GC: 25.1ms)
 
 
+Started POST "/auth/check_cpf" for 192.168.1.12 at 2025-11-21 11:46:25 -0300
+Processing by AuthController#check_cpf as HTML
+  Parameters: {"cpf"=>"11056887982", "auth"=>{"cpf"=>"11056887982"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."cpf" = '11056887982' LIMIT 1 /*action='check_cpf',application='Api',controller='auth'*/[0m
+  ↳ app/controllers/auth_controller.rb:4:in `check_cpf'
+Completed 200 OK in 12ms (Views: 0.1ms | ActiveRecord: 2.0ms (1 query, 0 cached) | GC: 0.2ms)
+
+
+Started POST "/auth/login" for 192.168.1.12 at 2025-11-21 11:46:47 -0300
+Processing by AuthController#login as HTML
+  Parameters: {"cpf"=>"11056887982", "password"=>"[FILTERED]", "auth"=>{"cpf"=>"11056887982", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."cpf" = '11056887982' LIMIT 1 /*action='login',application='Api',controller='auth'*/[0m
+  ↳ app/controllers/auth_controller.rb:15:in `login'
+Completed 200 OK in 171ms (Views: 0.1ms | ActiveRecord: 0.4ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/auth/check_cpf" for 192.168.1.12 at 2025-11-21 11:46:56 -0300
+Processing by AuthController#check_cpf as HTML
+  Parameters: {"cpf"=>"99999999999", "auth"=>{"cpf"=>"99999999999"}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."cpf" = '99999999999' LIMIT 1 /*action='check_cpf',application='Api',controller='auth'*/[0m
+  ↳ app/controllers/auth_controller.rb:4:in `check_cpf'
+Completed 200 OK in 1ms (Views: 0.1ms | ActiveRecord: 0.3ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/auth/check_cpf" for 192.168.1.12 at 2025-11-21 15:10:35 -0300
+Processing by AuthController#check_cpf as HTML
+  Parameters: {"cpf"=>"11111111111", "auth"=>{"cpf"=>"11111111111"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."cpf" = '11111111111' LIMIT 1 /*action='check_cpf',application='Api',controller='auth'*/[0m
+  ↳ app/controllers/auth_controller.rb:4:in `check_cpf'
+Completed 200 OK in 11ms (Views: 0.1ms | ActiveRecord: 1.9ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/auth/login" for 192.168.1.12 at 2025-11-21 15:10:39 -0300
+Processing by AuthController#login as HTML
+  Parameters: {"cpf"=>"11111111111", "password"=>"[FILTERED]", "auth"=>{"cpf"=>"11111111111", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."cpf" = '11111111111' LIMIT 1 /*action='login',application='Api',controller='auth'*/[0m
+  ↳ app/controllers/auth_controller.rb:15:in `login'
+Completed 200 OK in 171ms (Views: 0.1ms | ActiveRecord: 0.4ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT pg_try_advisory_lock(5878493172211724820) /*application='Api'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Api'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='Api'*/[0m
+Migrating to CreateSkills (20251121182448)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='Api'*/[0m
+  [1m[35m (3.4ms)[0m  [1m[35mCREATE TABLE "skills" ("id" bigserial primary key, "name" character varying NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL) /*application='Api'*/[0m
+  [1m[35m (1.4ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_skills_on_name" ON "skills" ("name") /*application='Api'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20251121182448') RETURNING "version" /*application='Api'*/[0m
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mCOMMIT /*application='Api'*/[0m
+Migrating to CreateUserSkills (20251121182452)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='Api'*/[0m
+  [1m[35m (2.0ms)[0m  [1m[35mCREATE TABLE "user_skills" ("id" bigserial primary key, "user_id" bigint NOT NULL, "skill_id" bigint NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_fe61b6a893"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+, CONSTRAINT "fk_rails_59acb6e327"
+FOREIGN KEY ("skill_id")
+  REFERENCES "skills" ("id")
+) /*application='Api'*/[0m
+  [1m[35m (1.2ms)[0m  [1m[35mCREATE INDEX "index_user_skills_on_user_id" ON "user_skills" ("user_id") /*application='Api'*/[0m
+  [1m[35m (1.2ms)[0m  [1m[35mCREATE INDEX "index_user_skills_on_skill_id" ON "user_skills" ("skill_id") /*application='Api'*/[0m
+  [1m[35m (1.2ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_user_skills_on_user_id_and_skill_id" ON "user_skills" ("user_id", "skill_id") /*application='Api'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20251121182452') RETURNING "version" /*application='Api'*/[0m
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mCOMMIT /*application='Api'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_advisory_unlock(5878493172211724820) /*application='Api'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Api'*/[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[35mSET search_path TO public /*application='Api'*/[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[35mSET search_path TO "$user", public /*application='Api'*/[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[35mSET search_path TO public /*application='Api'*/[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[35mSET search_path TO "$user", public /*application='Api'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Api'*/[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."cpf" = '11056887982' LIMIT 1 /*application='Api'*/[0m
+  [1m[36mSkill Load (0.2ms)[0m  [1m[34mSELECT "skills".* FROM "skills" WHERE "skills"."name" = 'Pintura' LIMIT 1 /*application='Api'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='Api'*/[0m
+  [1m[36mSkill Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "skills" WHERE "skills"."name" = 'Pintura' LIMIT 1 /*application='Api'*/[0m
+  [1m[36mSkill Create (0.2ms)[0m  [1m[32mINSERT INTO "skills" ("name", "created_at", "updated_at") VALUES ('Pintura', '2025-11-21 18:25:58.927309', '2025-11-21 18:25:58.927309') RETURNING "id" /*application='Api'*/[0m
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT /*application='Api'*/[0m
+  [1m[36mSkill Load (0.1ms)[0m  [1m[34mSELECT "skills".* FROM "skills" WHERE "skills"."name" = 'Elétrica' LIMIT 1 /*application='Api'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='Api'*/[0m
+  [1m[36mSkill Exists? (0.9ms)[0m  [1m[34mSELECT 1 AS one FROM "skills" WHERE "skills"."name" = 'Elétrica' LIMIT 1 /*application='Api'*/[0m
+  [1m[36mSkill Create (0.1ms)[0m  [1m[32mINSERT INTO "skills" ("name", "created_at", "updated_at") VALUES ('Elétrica', '2025-11-21 18:25:58.932354', '2025-11-21 18:25:58.932354') RETURNING "id" /*application='Api'*/[0m
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mCOMMIT /*application='Api'*/[0m
+  [1m[36mSkill Load (0.1ms)[0m  [1m[34mSELECT "skills".* FROM "skills" WHERE "skills"."name" = 'Jardinagem' LIMIT 1 /*application='Api'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN /*application='Api'*/[0m
+  [1m[36mSkill Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "skills" WHERE "skills"."name" = 'Jardinagem' LIMIT 1 /*application='Api'*/[0m
+  [1m[36mSkill Create (0.1ms)[0m  [1m[32mINSERT INTO "skills" ("name", "created_at", "updated_at") VALUES ('Jardinagem', '2025-11-21 18:25:58.935772', '2025-11-21 18:25:58.935772') RETURNING "id" /*application='Api'*/[0m
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT /*application='Api'*/[0m
+Started POST "/auth/check_cpf" for 192.168.1.12 at 2025-11-21 15:30:10 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Api'*/[0m
+Processing by AuthController#check_cpf as HTML
+  Parameters: {"cpf"=>"11056887982", "auth"=>{"cpf"=>"11056887982"}}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."cpf" = '11056887982' LIMIT 1 /*action='check_cpf',application='Api',controller='auth'*/[0m
+  ↳ app/controllers/auth_controller.rb:4:in `check_cpf'
+Completed 200 OK in 15ms (Views: 0.1ms | ActiveRecord: 2.6ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/auth/login" for 192.168.1.12 at 2025-11-21 15:30:15 -0300
+Processing by AuthController#login as HTML
+  Parameters: {"cpf"=>"11056887982", "password"=>"[FILTERED]", "auth"=>{"cpf"=>"11056887982", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."cpf" = '11056887982' LIMIT 1 /*action='login',application='Api',controller='auth'*/[0m
+  ↳ app/controllers/auth_controller.rb:15:in `login'
+Completed 200 OK in 172ms (Views: 0.1ms | ActiveRecord: 0.4ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/users" for 192.168.1.12 at 2025-11-21 15:30:18 -0300
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."role" IN ('citizen', 'worker') ORDER BY "users"."name" ASC /*action='index',application='Api',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:10:in `map'
+  [1m[36mAddress Load (0.3ms)[0m  [1m[34mSELECT "addresses".* FROM "addresses" WHERE "addresses"."user_id" = 2 /*action='index',application='Api',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:10:in `map'
+  [1m[36mUserSkill Load (0.2ms)[0m  [1m[34mSELECT "user_skills".* FROM "user_skills" WHERE "user_skills"."user_id" = 2 /*action='index',application='Api',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:10:in `map'
+Completed 200 OK in 19ms (Views: 0.1ms | ActiveRecord: 2.6ms (3 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/users/2" for 192.168.1.12 at 2025-11-21 15:30:20 -0300
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 2 LIMIT 1 /*action='show',application='Api',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:25:in `show'
+  [1m[36mAddress Load (0.1ms)[0m  [1m[34mSELECT "addresses".* FROM "addresses" WHERE "addresses"."user_id" = 2 LIMIT 1 /*action='show',application='Api',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:35:in `show'
+Started GET "/users/skills/list" for 192.168.1.12 at 2025-11-21 15:30:20 -0300
+Processing by UsersController#skills as HTML
+  [1m[36mSkill Load (0.4ms)[0m  [1m[34mSELECT "skills".* FROM "skills" INNER JOIN "user_skills" ON "skills"."id" = "user_skills"."skill_id" WHERE "user_skills"."user_id" = 2 /*action='show',application='Api',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:43:in `map'
+Completed 200 OK in 8ms (Views: 0.1ms | ActiveRecord: 2.0ms (3 queries, 0 cached) | GC: 0.0ms)
+
+
+  [1m[36mSkill Load (12.6ms)[0m  [1m[34mSELECT "skills".* FROM "skills" ORDER BY "skills"."name" ASC /*action='skills',application='Api',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:129:in `map'
+Completed 200 OK in 14ms (Views: 0.1ms | ActiveRecord: 14.2ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/users" for 192.168.1.12 at 2025-11-21 15:30:28 -0300
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."role" IN ('citizen', 'worker') ORDER BY "users"."name" ASC /*action='index',application='Api',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:10:in `map'
+  [1m[36mAddress Load (0.2ms)[0m  [1m[34mSELECT "addresses".* FROM "addresses" WHERE "addresses"."user_id" = 2 /*action='index',application='Api',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:10:in `map'
+  [1m[36mUserSkill Load (0.2ms)[0m  [1m[34mSELECT "user_skills".* FROM "user_skills" WHERE "user_skills"."user_id" = 2 /*action='index',application='Api',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:10:in `map'
+Completed 200 OK in 4ms (Views: 0.1ms | ActiveRecord: 1.3ms (3 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/users/skills/list" for 192.168.1.12 at 2025-11-21 15:30:33 -0300
+Processing by UsersController#skills as HTML
+  [1m[36mSkill Load (0.3ms)[0m  [1m[34mSELECT "skills".* FROM "skills" ORDER BY "skills"."name" ASC /*action='skills',application='Api',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:129:in `map'
+Completed 200 OK in 1ms (Views: 0.1ms | ActiveRecord: 0.3ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/users/create_worker" for 192.168.1.12 at 2025-11-21 15:31:27 -0300
+Processing by UsersController#create_worker as HTML
+  Parameters: {"user"=>{"cpf"=>"12345678900", "name"=>"Teste", "birthday"=>"2006-05-12", "email"=>"[FILTERED]", "phone"=>"12345678907", "address_attributes"=>{"street"=>"B", "number"=>"12", "neighborhood"=>"B", "city"=>"Aca", "state"=>"Aca", "zipcode"=>"12345678"}}, "password"=>"[FILTERED]", "skill_ids"=>[3, 2]}
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN /*action='create_worker',application='Api',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:97:in `create_worker'
+  [1m[36mUser Exists? (1.0ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'a@a.com' LIMIT 1 /*action='create_worker',application='Api',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:97:in `create_worker'
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."cpf" = '12345678900' LIMIT 1 /*action='create_worker',application='Api',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:97:in `create_worker'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK /*action='create_worker',application='Api',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:97:in `create_worker'
+Completed 422 Unprocessable Content in 176ms (Views: 0.1ms | ActiveRecord: 1.7ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/users/create_worker" for 192.168.1.12 at 2025-11-21 15:31:40 -0300
+Processing by UsersController#create_worker as HTML
+  Parameters: {"user"=>{"cpf"=>"12345678900", "name"=>"Teste", "birthday"=>"2006-05-12", "email"=>"[FILTERED]", "phone"=>"12345678907", "address_attributes"=>{"street"=>"B", "number"=>"12", "neighborhood"=>"B", "city"=>"Aca", "state"=>"Aca", "zipcode"=>"12345678"}}, "password"=>"[FILTERED]", "skill_ids"=>[3, 2]}
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN /*action='create_worker',application='Api',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:97:in `create_worker'
+  [1m[36mUser Exists? (1.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'a@aa.com' LIMIT 1 /*action='create_worker',application='Api',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:97:in `create_worker'
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."cpf" = '12345678900' LIMIT 1 /*action='create_worker',application='Api',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:97:in `create_worker'
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("name", "birthday", "email", "phone", "cpf", "password_digest", "role", "created_at", "updated_at") VALUES ('Teste', '2006-05-12', 'a@aa.com', '12345678907', '12345678900', '$2a$12$IJt1nlnqGqyieforwKwDBOATgzvF0MlhCUpTVz2DMdwbwQFIRI58.', 'worker', '2025-11-21 18:31:41.091868', '2025-11-21 18:31:41.091868') RETURNING "id" /*action='create_worker',application='Api',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:97:in `create_worker'
+  [1m[36mAddress Create (0.3ms)[0m  [1m[32mINSERT INTO "addresses" ("user_id", "street", "number", "neighborhood", "city", "state", "zipcode", "created_at", "updated_at") VALUES (3, 'B', '12', 'B', 'Aca', 'Aca', '12345678', '2025-11-21 18:31:41.093033', '2025-11-21 18:31:41.093033') RETURNING "id" /*action='create_worker',application='Api',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:97:in `create_worker'
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mCOMMIT /*action='create_worker',application='Api',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:97:in `create_worker'
+  [1m[36mSkill Load (0.2ms)[0m  [1m[34mSELECT "skills".* FROM "skills" WHERE "skills"."id" IN (3, 2) /*action='create_worker',application='Api',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:100:in `create_worker'
+  [1m[36mSkill Load (0.3ms)[0m  [1m[34mSELECT "skills".* FROM "skills" INNER JOIN "user_skills" ON "skills"."id" = "user_skills"."skill_id" WHERE "user_skills"."user_id" = 3 /*action='create_worker',application='Api',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:100:in `create_worker'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN /*action='create_worker',application='Api',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:100:in `create_worker'
+  [1m[36mUserSkill Exists? (0.7ms)[0m  [1m[34mSELECT 1 AS one FROM "user_skills" WHERE "user_skills"."user_id" = 3 AND "user_skills"."skill_id" = 3 LIMIT 1 /*action='create_worker',application='Api',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:100:in `create_worker'
+  [1m[36mUserSkill Create (0.4ms)[0m  [1m[32mINSERT INTO "user_skills" ("user_id", "skill_id", "created_at", "updated_at") VALUES (3, 3, '2025-11-21 18:31:41.100046', '2025-11-21 18:31:41.100046') RETURNING "id" /*action='create_worker',application='Api',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:100:in `create_worker'
+  [1m[36mUserSkill Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "user_skills" WHERE "user_skills"."user_id" = 3 AND "user_skills"."skill_id" = 2 LIMIT 1 /*action='create_worker',application='Api',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:100:in `create_worker'
+  [1m[36mUserSkill Create (0.2ms)[0m  [1m[32mINSERT INTO "user_skills" ("user_id", "skill_id", "created_at", "updated_at") VALUES (3, 2, '2025-11-21 18:31:41.105478', '2025-11-21 18:31:41.105478') RETURNING "id" /*action='create_worker',application='Api',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:100:in `create_worker'
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT /*action='create_worker',application='Api',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:100:in `create_worker'
+Completed 201 Created in 190ms (Views: 0.1ms | ActiveRecord: 5.4ms (10 queries, 0 cached) | GC: 3.4ms)
+
+
+Started GET "/users" for 192.168.1.12 at 2025-11-21 15:31:43 -0300
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."role" IN ('citizen', 'worker') ORDER BY "users"."name" ASC /*action='index',application='Api',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:10:in `map'
+  [1m[36mAddress Load (0.1ms)[0m  [1m[34mSELECT "addresses".* FROM "addresses" WHERE "addresses"."user_id" IN (2, 3) /*action='index',application='Api',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:10:in `map'
+  [1m[36mUserSkill Load (0.1ms)[0m  [1m[34mSELECT "user_skills".* FROM "user_skills" WHERE "user_skills"."user_id" IN (2, 3) /*action='index',application='Api',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:10:in `map'
+  [1m[36mSkill Load (0.1ms)[0m  [1m[34mSELECT "skills".* FROM "skills" WHERE "skills"."id" IN (3, 2) /*action='index',application='Api',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:10:in `map'
+Completed 200 OK in 4ms (Views: 0.1ms | ActiveRecord: 0.6ms (4 queries, 0 cached) | GC: 0.2ms)
+
+
+Started GET "/users/3" for 192.168.1.12 at 2025-11-21 15:31:47 -0300
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 3 LIMIT 1 /*action='show',application='Api',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:25:in `show'
+  [1m[36mAddress Load (0.1ms)[0m  [1m[34mSELECT "addresses".* FROM "addresses" WHERE "addresses"."user_id" = 3 LIMIT 1 /*action='show',application='Api',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:35:in `show'
+  [1m[36mSkill Load (0.2ms)[0m  [1m[34mSELECT "skills".* FROM "skills" INNER JOIN "user_skills" ON "skills"."id" = "user_skills"."skill_id" WHERE "user_skills"."user_id" = 3 /*action='show',application='Api',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:43:in `map'
+Completed 200 OK in 3ms (Views: 0.1ms | ActiveRecord: 0.7ms (3 queries, 0 cached) | GC: 0.2ms)
+
+
+Started GET "/users/skills/list" for 192.168.1.12 at 2025-11-21 15:31:47 -0300
+Processing by UsersController#skills as HTML
+  [1m[36mSkill Load (0.2ms)[0m  [1m[34mSELECT "skills".* FROM "skills" ORDER BY "skills"."name" ASC /*action='skills',application='Api',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:129:in `map'
+Completed 200 OK in 1ms (Views: 0.0ms | ActiveRecord: 0.2ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/users" for 192.168.1.12 at 2025-11-21 15:33:14 -0300
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."role" IN ('citizen', 'worker') ORDER BY "users"."name" ASC /*action='index',application='Api',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:10:in `map'
+  [1m[36mAddress Load (0.1ms)[0m  [1m[34mSELECT "addresses".* FROM "addresses" WHERE "addresses"."user_id" IN (2, 3) /*action='index',application='Api',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:10:in `map'
+  [1m[36mUserSkill Load (0.1ms)[0m  [1m[34mSELECT "user_skills".* FROM "user_skills" WHERE "user_skills"."user_id" IN (2, 3) /*action='index',application='Api',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:10:in `map'
+  [1m[36mSkill Load (0.1ms)[0m  [1m[34mSELECT "skills".* FROM "skills" WHERE "skills"."id" IN (3, 2) /*action='index',application='Api',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:10:in `map'
+Completed 200 OK in 4ms (Views: 0.1ms | ActiveRecord: 0.8ms (4 queries, 0 cached) | GC: 0.1ms)
+
+
+Started GET "/users/2" for 192.168.1.12 at 2025-11-21 15:33:16 -0300
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 2 LIMIT 1 /*action='show',application='Api',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:25:in `show'
+  [1m[36mAddress Load (0.1ms)[0m  [1m[34mSELECT "addresses".* FROM "addresses" WHERE "addresses"."user_id" = 2 LIMIT 1 /*action='show',application='Api',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:35:in `show'
+  [1m[36mSkill Load (0.2ms)[0m  [1m[34mSELECT "skills".* FROM "skills" INNER JOIN "user_skills" ON "skills"."id" = "user_skills"."skill_id" WHERE "user_skills"."user_id" = 2 /*action='show',application='Api',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:43:in `map'
+Completed 200 OK in 3ms (Views: 0.1ms | ActiveRecord: 0.7ms (3 queries, 0 cached) | GC: 0.1ms)
+
+
+Started GET "/users/skills/list" for 192.168.1.12 at 2025-11-21 15:33:16 -0300
+Processing by UsersController#skills as HTML
+  [1m[36mSkill Load (0.1ms)[0m  [1m[34mSELECT "skills".* FROM "skills" ORDER BY "skills"."name" ASC /*action='skills',application='Api',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:129:in `map'
+Completed 200 OK in 1ms (Views: 0.0ms | ActiveRecord: 0.1ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/auth/check_cpf" for 192.168.1.12 at 2025-11-21 15:33:24 -0300
+Processing by AuthController#check_cpf as HTML
+  Parameters: {"cpf"=>"11056887982", "auth"=>{"cpf"=>"11056887982"}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."cpf" = '11056887982' LIMIT 1 /*action='check_cpf',application='Api',controller='auth'*/[0m
+  ↳ app/controllers/auth_controller.rb:4:in `check_cpf'
+Completed 200 OK in 1ms (Views: 0.1ms | ActiveRecord: 0.4ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/auth/login" for 192.168.1.12 at 2025-11-21 15:33:29 -0300
+Processing by AuthController#login as HTML
+  Parameters: {"cpf"=>"11056887982", "password"=>"[FILTERED]", "auth"=>{"cpf"=>"11056887982", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."cpf" = '11056887982' LIMIT 1 /*action='login',application='Api',controller='auth'*/[0m
+  ↳ app/controllers/auth_controller.rb:15:in `login'
+Completed 200 OK in 171ms (Views: 0.1ms | ActiveRecord: 0.4ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/users" for 192.168.1.12 at 2025-11-21 15:33:31 -0300
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."role" IN ('citizen', 'worker') ORDER BY "users"."name" ASC /*action='index',application='Api',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:10:in `map'
+  [1m[36mAddress Load (0.2ms)[0m  [1m[34mSELECT "addresses".* FROM "addresses" WHERE "addresses"."user_id" IN (2, 3) /*action='index',application='Api',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:10:in `map'
+  [1m[36mUserSkill Load (0.1ms)[0m  [1m[34mSELECT "user_skills".* FROM "user_skills" WHERE "user_skills"."user_id" IN (2, 3) /*action='index',application='Api',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:10:in `map'
+  [1m[36mSkill Load (0.1ms)[0m  [1m[34mSELECT "skills".* FROM "skills" WHERE "skills"."id" IN (3, 2) /*action='index',application='Api',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:10:in `map'
+Completed 200 OK in 4ms (Views: 0.1ms | ActiveRecord: 0.7ms (4 queries, 0 cached) | GC: 0.1ms)
+
+
+Started GET "/users/2" for 192.168.1.12 at 2025-11-21 15:33:32 -0300
+Started GET "/users/skills/list" for 192.168.1.12 at 2025-11-21 15:33:32 -0300
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"2"}
+Processing by UsersController#skills as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 2 LIMIT 1 /*action='show',application='Api',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:25:in `show'
+  [1m[36mSkill Load (0.3ms)[0m  [1m[34mSELECT "skills".* FROM "skills" ORDER BY "skills"."name" ASC /*action='skills',application='Api',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:129:in `map'
+Completed 200 OK in 1ms (Views: 0.1ms | ActiveRecord: 0.3ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+  [1m[36mAddress Load (0.7ms)[0m  [1m[34mSELECT "addresses".* FROM "addresses" WHERE "addresses"."user_id" = 2 LIMIT 1 /*action='show',application='Api',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:35:in `show'
+  [1m[36mSkill Load (0.2ms)[0m  [1m[34mSELECT "skills".* FROM "skills" INNER JOIN "user_skills" ON "skills"."id" = "user_skills"."skill_id" WHERE "user_skills"."user_id" = 2 /*action='show',application='Api',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:43:in `map'
+Completed 200 OK in 4ms (Views: 0.0ms | ActiveRecord: 1.4ms (3 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/users/skills/list" for 192.168.1.12 at 2025-11-21 15:33:34 -0300
+Processing by UsersController#skills as HTML
+  [1m[36mSkill Load (0.3ms)[0m  [1m[34mSELECT "skills".* FROM "skills" ORDER BY "skills"."name" ASC /*action='skills',application='Api',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:129:in `map'
+Completed 200 OK in 1ms (Views: 0.1ms | ActiveRecord: 0.3ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/users" for 192.168.1.12 at 2025-11-21 15:33:44 -0300
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."role" IN ('citizen', 'worker') ORDER BY "users"."name" ASC /*action='index',application='Api',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:10:in `map'
+  [1m[36mAddress Load (0.1ms)[0m  [1m[34mSELECT "addresses".* FROM "addresses" WHERE "addresses"."user_id" IN (2, 3) /*action='index',application='Api',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:10:in `map'
+  [1m[36mUserSkill Load (0.1ms)[0m  [1m[34mSELECT "user_skills".* FROM "user_skills" WHERE "user_skills"."user_id" IN (2, 3) /*action='index',application='Api',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:10:in `map'
+  [1m[36mSkill Load (0.1ms)[0m  [1m[34mSELECT "skills".* FROM "skills" WHERE "skills"."id" IN (3, 2) /*action='index',application='Api',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:10:in `map'
+Completed 200 OK in 4ms (Views: 0.1ms | ActiveRecord: 0.7ms (4 queries, 0 cached) | GC: 0.1ms)
+
+
+Started GET "/users/skills/list" for 192.168.1.12 at 2025-11-21 15:33:45 -0300
+Started GET "/users/2" for 192.168.1.12 at 2025-11-21 15:33:45 -0300
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"2"}
+Processing by UsersController#skills as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 2 LIMIT 1 /*action='show',application='Api',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:25:in `show'
+  [1m[36mSkill Load (0.8ms)[0m  [1m[34mSELECT "skills".* FROM "skills" ORDER BY "skills"."name" ASC /*action='skills',application='Api',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:129:in `map'
+Completed 200 OK in 1ms (Views: 0.1ms | ActiveRecord: 0.8ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+  [1m[36mAddress Load (0.5ms)[0m  [1m[34mSELECT "addresses".* FROM "addresses" WHERE "addresses"."user_id" = 2 LIMIT 1 /*action='show',application='Api',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:35:in `show'
+  [1m[36mSkill Load (0.2ms)[0m  [1m[34mSELECT "skills".* FROM "skills" INNER JOIN "user_skills" ON "skills"."id" = "user_skills"."skill_id" WHERE "user_skills"."user_id" = 2 /*action='show',application='Api',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:43:in `map'
+Completed 200 OK in 3ms (Views: 0.1ms | ActiveRecord: 1.0ms (3 queries, 0 cached) | GC: 0.1ms)
+
+
+Started GET "/users/skills/list" for 192.168.1.12 at 2025-11-21 15:33:47 -0300
+Processing by UsersController#skills as HTML
+  [1m[36mSkill Load (0.3ms)[0m  [1m[34mSELECT "skills".* FROM "skills" ORDER BY "skills"."name" ASC /*action='skills',application='Api',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:129:in `map'
+Completed 200 OK in 1ms (Views: 0.1ms | ActiveRecord: 0.3ms (1 query, 0 cached) | GC: 0.1ms)
+
+
