@@ -133,5 +133,51 @@ export const profileService = {
   },
 };
 
+export const tasksService = {
+  getDashboard: async (cpf) => {
+    const response = await api.get('/tasks/dashboard', { params: { cpf } });
+    return response.data;
+  },
+  
+  getMapData: async (cpf, filter = null) => {
+    const params = { cpf };
+    if (filter) {
+      params.filter = filter;
+    }
+    const response = await api.get('/tasks/map_data', { params });
+    return response.data;
+  },
+  
+  createTaskRequest: async (cpf, taskRequestData) => {
+    const response = await api.post('/tasks/task_requests', {
+      cpf: cpf,
+      task_request: taskRequestData,
+    });
+    return response.data;
+  },
+  
+  getTaskDetails: async (type, id) => {
+    const response = await api.get(`/tasks/${type}/${id}`);
+    return response.data;
+  },
+  
+  updateTaskStatus: async (cpf, taskId, status) => {
+    const response = await api.put(`/tasks/${taskId}/status`, {
+      cpf: cpf,
+      status: status,
+    });
+    return response.data;
+  },
+  
+  adminAction: async (cpf, itemId, actionType, workerId = null) => {
+    const response = await api.post(`/tasks/${itemId}/admin_action`, {
+      cpf: cpf,
+      action_type: actionType,
+      worker_id: workerId,
+    });
+    return response.data;
+  },
+};
+
 export default api;
 

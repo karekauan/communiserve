@@ -8,6 +8,7 @@ import LoginScreen from './screens/LoginScreen';
 import RegisterScreen from './screens/RegisterScreen';
 import HomeScreen from './screens/HomeScreen';
 import ProfileScreen from './screens/ProfileScreen';
+import MapScreen from './screens/MapScreen';
 import AdminUsersScreen from './screens/AdminUsersScreen';
 import UserDetailScreen from './screens/UserDetailScreen';
 import RegisterWorkerScreen from './screens/RegisterWorkerScreen';
@@ -37,6 +38,7 @@ function AppNavigator() {
           <>
             <Stack.Screen name="Home" component={HomeScreen} />
             <Stack.Screen name="Profile" component={ProfileScreen} />
+            <Stack.Screen name="Map" component={MapScreen} />
             <Stack.Screen name="Login" component={LoginScreen} />
             <Stack.Screen name="Register" component={RegisterScreen} />
             <Stack.Screen name="AdminUsers" component={AdminUsersScreen} />

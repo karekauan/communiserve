@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get "tasks/dashboard"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
@@ -20,4 +21,12 @@ Rails.application.routes.draw do
   patch "users/:id", to: "users#update"
   post "users/create_worker", to: "users#create_worker"
   get "users/skills/list", to: "users#skills"
+  
+  # Tasks dashboard routes
+  get "tasks/dashboard", to: "tasks#dashboard"
+  get "tasks/map_data", to: "tasks#map_data"
+  post "tasks/task_requests", to: "tasks#create_task_request"
+  get "tasks/:type/:id", to: "tasks#show"
+  put "tasks/:id/status", to: "tasks#update_task_status"
+  post "tasks/:id/admin_action", to: "tasks#admin_action"
 end
